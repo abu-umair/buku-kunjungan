@@ -22,13 +22,30 @@ class TamuResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationLabel = 'Tamu';
+
+    // protected static ?string $navigationGroup = 'Data';
+
+    protected static ?string $slug = 'kelola-tamu';
+
+
+    public static ?string $label = 'Tamu';
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('nama_tamu'),
-                TextInput::make('nama_siswa'),
+                TextInput::make('nama_tamu')
+                    ->label('Nama Tamu')
+                    ->placeholder('masukkan nama tamu')
+                    ->required(),
+                TextInput::make('nama_siswa')
+                    ->label('Nama Siswa')
+                    ->placeholder('masukkan nama siswa')
+                    ->required(),
                 Textarea::make('tujuan')
+                    // ->label('Nama Tamu')
+                    ->placeholder('masukkan tujuan')
+                    ->required(),
             ]);
     }
 
@@ -36,9 +53,20 @@ class TamuResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nama_tamu'),
-                TextColumn::make('nama_siswa'),
-                TextColumn::make('tujuan'),
+                TextColumn::make('nama_tamu')
+                    ->label('Nama Tamu')
+                    ->sortable()
+                    // ->copyable()
+                    // ->copyMessage('berhasil menyalin')
+                    ->searchable(),
+                TextColumn::make('nama_siswa')
+                    ->label('Nama Siswa')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('tujuan')
+                    // ->label('Nama Tamu')
+                    ->sortable()
+                    ->searchable(),
             ])
             ->filters([
                 //
