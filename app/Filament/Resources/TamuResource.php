@@ -6,6 +6,7 @@ use App\Filament\Resources\TamuResource\Pages;
 use App\Filament\Resources\TamuResource\RelationManagers;
 use App\Models\Tamu;
 use Filament\Forms;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -29,23 +30,27 @@ class TamuResource extends Resource
     protected static ?string $slug = 'kelola-tamu';
 
 
-    public static ?string $label = 'Tamu';
+    // public static ?string $label = 'Tamu';
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('nama_tamu')
-                    ->label('Nama Tamu')
-                    ->placeholder('masukkan nama tamu')
-                    ->required(),
-                TextInput::make('nama_siswa')
-                    ->label('Nama Siswa')
-                    ->placeholder('masukkan nama siswa')
-                    ->required(),
-                Textarea::make('tujuan')
-                    // ->label('Nama Tamu')
-                    ->placeholder('masukkan tujuan')
-                    ->required(),
+                Section::make('Tamu')
+                    // ->description('Prevent abuse by limiting the number of requests per period')
+                    ->schema([
+                        TextInput::make('nama_tamu')
+                            ->label('Nama Tamu')
+                            ->placeholder('masukkan nama tamu')
+                            ->required(),
+                        TextInput::make('nama_siswa')
+                            ->label('Nama Siswa')
+                            ->placeholder('masukkan nama siswa')
+                            ->required(),
+                        Textarea::make('tujuan')
+                            // ->label('Nama Tamu')
+                            ->placeholder('masukkan tujuan')
+                            ->required(),
+                    ])
             ]);
     }
 
